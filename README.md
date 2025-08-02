@@ -45,7 +45,7 @@ python main.py
 
 ## Contract Descriptions
 
-For contract details and support, visit the Telegram channel: [https://t.me/wwafwt](https://t.me/wwafwt)
+For contract details and support: [https://t.me/wwafwt](https://t.me/wwafwt)
 
 ## License
 
