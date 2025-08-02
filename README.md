@@ -20,6 +20,7 @@ A graphical interface for managing token swaps on Solana via the Jupiter Aggrega
 ## Usage
 
 ```bash
+pip install -r req.txt
 python main.py
 ```
 
