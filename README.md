@@ -39,7 +39,9 @@ python main.py
 
 For contract details and support, visit the Telegram channel: [https://t.me/wwafwt](https://t.me/wwafwt)
 
+## License
 
+MIT
 ## License
 
 MIT
