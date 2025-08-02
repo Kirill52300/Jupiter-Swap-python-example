@@ -1,0 +1,20 @@
+# Python cache and environment
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.env
+.env.*
+
+# Database and secrets
+pairs.db
+private_key.txt
+
+# IDE/project files
+.vscode/
+.idea/
+*.swp
+
+# OS files
+.DS_Store
+Thumbs.db
