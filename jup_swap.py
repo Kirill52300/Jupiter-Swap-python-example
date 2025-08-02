@@ -71,12 +71,12 @@ class JupSwap:
                     result = await resp.json()
                     print(result)
                     if result.get("status") == "Success":
-                        msg = f"Успешно: {result.get('signature')}"
+                        msg = f"Succes: {result.get('signature')}"
                         msg += f"\nhttps://explorer.solana.com/tx/{result.get('signature')}"
                         msg += f"\nhttps://ultra-api.jup.ag/tx/{result.get('signature')}"
                         return msg
                     else:
-                        msg = f"Фейл: {result.get('error', result)}"
+                        msg = f"Fail: {result.get('error', result)}"
                         msg += f"\nhttps://explorer.solana.com/tx/{result.get('signature') if result.get('signature') else 'unknown'}"
                         msg += f"\nhttps://ultra-api.jup.ag/tx/{result.get('signature') if result.get('signature') else 'unknown'}"
                         return msg
@@ -103,9 +103,9 @@ class JupSwap:
 
 def extract_received_amount(txn_result, mint):
     """
-    Получить сколько токенов mint было получено в транзакции.
-    txn_result — результат client.get_transaction(...)
-    mint — строка mint токена
+    Get how many tokens of mint were received in the transaction.
+    txn_result — result of client.get_transaction(...)
+    mint — mint token string
     """
     meta = None
     if isinstance(txn_result, dict):
@@ -117,7 +117,7 @@ def extract_received_amount(txn_result, mint):
 
     pre = None
     post = None
-    # Для JSON ответа
+    # For JSON response
     pre_token_balances = meta.get("preTokenBalances") or meta.get("pre_token_balances")
     post_token_balances = meta.get("postTokenBalances") or meta.get("post_token_balances")
     if pre_token_balances and post_token_balances:
@@ -131,43 +131,38 @@ def extract_received_amount(txn_result, mint):
         return post - pre
     return None
 
-# Пример использования:
-#if __name__ == "__main__":
-    # import asyncio
-
-    # # Можно не передавать параметры, будут использованы значения по умолчанию
-    # swap = JupSwap(private_key_str='2iVCnkWss6sM9FazYQnvRNWq3U59GinMVKWKXvSNUPhud5mLVdCuafeqz6mw1aeNDtDYVTu3jytrDveKyeyizBR6')
-
-    
-    # async def main():
-    #     # Пример свапа
-    #     balance = await swap.get_token_balance('So11111111111111111111111111111111111111112')
-    #     if hasattr(balance.value,'amount'):
-            
-    #         result = await swap.fetch_and_execute(
-    #             inputMint="EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",#So11111111111111111111111111111111111111112
-    #             outputMint="So11111111111111111111111111111111111111112",#EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v
-    #             amount=int(balance.value.amount)-500000
-    #         )
-    #         print(result)
-    #     else:
-          
-    #         result = await swap.fetch_and_execute(
-    #             inputMint="So11111111111111111111111111111111111111112",#So11111111111111111111111111111111111111112
-    #             outputMint="EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",#EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v
-    #             amount=int(balance.value)-500000*10
-    #         )
-          
-            # Получить json-объект транзакции
-        
-
-            # Получить сколько токенов EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v было получено
-         
-        # Пример получения баланса
-        
-        # balance = await swap.get_balance()
-        # print(f"Balance  {balance}")
-        # print(f'Balance in Solana: {balance.value/  1_000_000_000}')
-
-    # asyncio.run(main())
+# Example usage:
+# if __name__ == "__main__":
+#     import asyncio
+#
+#     # You can skip parameters, default values will be used
+#     swap = JupSwap(private_key_str='2iVCnkWss6sM9FazYQnvRNWq3U59GinMVKWKXvSNUPhud5mLVdCuafeqz6mw1aeNDtDYVTu3jytrDveKyeyizBR6')
+#
+#     async def main():
+#         # Example swap
+#         balance = await swap.get_token_balance('So11111111111111111111111111111111111111112')
+#         if hasattr(balance.value,'amount'):
+#             result = await swap.fetch_and_execute(
+#                 inputMint="EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v", # So11111111111111111111111111111111111111112
+#                 outputMint="So11111111111111111111111111111111111111112", # EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v
+#                 amount=int(balance.value.amount)-500000
+#             )
+#             print(result)
+#         else:
+#             result = await swap.fetch_and_execute(
+#                 inputMint="So11111111111111111111111111111111111111112", # So11111111111111111111111111111111111111112
+#                 outputMint="EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v", # EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v
+#                 amount=int(balance.value)-500000*10
+#             )
+#
+#             # Get transaction JSON object
+#
+#             # Get how many EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v tokens were received
+#
+#         # Example of getting balance
+#         # balance = await swap.get_balance()
+#         # print(f"Balance  {balance}")
+#         # print(f'Balance in Solana: {balance.value/  1_000_000_000}')
+#
+#     asyncio.run(main())
 
