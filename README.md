@@ -1,5 +1,7 @@
 # Jupiter Swap GUI
 
+![Jupiter Swap GUI Screenshot](screenshot.png)
+
 A graphical interface for managing token swaps on Solana via the Jupiter Aggregator.
 
 ## Features
@@ -11,16 +13,21 @@ A graphical interface for managing token swaps on Solana via the Jupiter Aggrega
 - Store pairs in a SQLite database
 - Securely store your private key in a local file
 
+
 ## Requirements
 
 - Python 3.8+
 - PyQt5
 - `jup_swap` module (must be implemented separately)
+- Install dependencies:
+
+```bash
+pip install -r req.txt
+```
 
 ## Usage
 
 ```bash
-pip install -r req.txt
 python main.py
 ```
 
@@ -43,6 +50,4 @@ For contract details and support, visit the Telegram channel: [https://t.me/wwaf
 ## License
 
 MIT
-## License
 
-MIT
